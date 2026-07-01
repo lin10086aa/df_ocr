@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>df_ocr - PDF 转 Markdown</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📄 PDF 转 Markdown</h1>
+            <p class="subtitle">基于 PP-StructureV3 · 上传 PDF 即可获得结构化 Markdown 文本</p>
+        </header>
+
+        <!-- Upload Zone -->
+        <section class="upload-section">
+            <div id="dropZone" class="drop-zone">
+                <div class="drop-zone-content">
+                    <span class="drop-icon">📁</span>
+                    <p>拖拽 PDF 文件到此处，或 <button type="button" id="browseBtn" class="link-btn">点击选择</button></p>
+                    <p class="hint">支持同时选择多个文件，单个文件不超过 50MB</p>
+                </div>
+                <input type="file" id="fileInput" accept=".pdf,application/pdf" multiple hidden>
+            </div>
+
+            <!-- File List -->
+            <div id="fileList" class="file-list hidden">
+                <h3>已选择的文件 (<span id="fileCount">0</span>)</h3>
+                <ul id="fileItems"></ul>
+                <div class="file-actions">
+                    <button type="button" id="clearBtn" class="btn btn-outline">清空</button>
+                    <button type="button" id="convertBtn" class="btn btn-primary">开始转换</button>
+                </div>
+            </div>
+
+            <!-- Progress -->
+            <div id="progressArea" class="progress-area hidden">
+                <div class="progress-bar-wrapper">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+                <p id="progressText" class="progress-text">处理中...</p>
+            </div>
+        </section>
+
+        <!-- Results -->
+        <section id="resultsSection" class="results-section hidden">
+            <h2>转换结果</h2>
+            <div class="results-actions">
+                <button type="button" id="downloadAllBtn" class="btn btn-primary">📥 全部下载 (.zip)</button>
+            </div>
+            <div id="resultCards" class="result-cards"></div>
+        </section>
+
+        <!-- Error Area -->
+        <div id="errorArea" class="error-area hidden"></div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
